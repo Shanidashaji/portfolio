@@ -1,0 +1,146 @@
+# Netlify configuration for the Shanida Shaji portfolio
+# (React + TypeScript + Vite single-page app).
+#
+# Deploy flow on every push to the connected branch:
+#   1. Netlify clones the repo and installs Node (version pinned below).
+#   2. Dependencies are installed from package-lock.json, including
+#      devDependencies (TypeScript, Vite, ESLint), which the build needs.
+#      Do not set NODE_ENV=production in the Netlify UI — it would skip them.
+#   3. `npm run build` runs `tsc -b` (type check — the deploy fails early on
+#      type errors instead of shipping a broken site) and then `vite build`.
+#   4. The static output in `dist/` is published to Netlify's CDN.
+#   5. The redirect and header rules below are applied at the edge.
+#
+# This file is the single source of truth for build, routing and headers.
+# Settings here override anything entered in the Netlify UI.
+
+# ---------------------------------------------------------------------------
+# Build
+# ---------------------------------------------------------------------------
+[build]
+  # Folder Netlify runs the build from (repo root).
+  base    = ""
+  # Type-check + production bundle. Defined in package.json.
+  command = "npm run build"
+  # Vite's output folder — this is what gets deployed.
+  publish = "dist"
+
+[build.environment]
+  # Same major version the project is developed and tested on.
+  NODE_VERSION = "22"
+  # Keep npm quiet and deterministic in CI.
+  NPM_CONFIG_AUDIT = "false"
+  NPM_CONFIG_FUND = "false"
+  # Silence the "browserslist data is old" notice in build logs.
+  BROWSERSLIST_IGNORE_OLD_DATA = "1"
+
+# ---------------------------------------------------------------------------
+# Per-context builds
+# ---------------------------------------------------------------------------
+# Production (the main branch): type check + build.
+[context.production]
+  command = "npm run build"
+
+# Pull-request previews: also run ESLint so problems surface before merge.
+[context.deploy-preview]
+  command = "npm run lint && npm run build"
+
+# Any other branch Netlify is set to deploy.
+[context.branch-deploy]
+  command = "npm run lint && npm run build"
+
+# ---------------------------------------------------------------------------
+# Routing
+# ---------------------------------------------------------------------------
+# Single-page app fallback: deep links such as /work/qspot or /about are
+# handled by React Router, so every path that is not a real file is served
+# index.html with a 200 status. Real files (assets, images, the résumé PDF,
+# favicon) are matched first because `force` is false.
+[[redirects]]
+  from   = "/*"
+  to     = "/index.html"
+  status = 200
+  force  = false
+
+# Optional: once a custom domain is connected, uncomment and edit to send
+# the netlify.app address to it (keeps one canonical URL for SEO).
+# [[redirects]]
+#   from   = "https://YOUR-SITE.netlify.app/*"
+#   to     = "https://YOUR-DOMAIN/:splat"
+#   status = 301
+#   force  = true
+
+# ---------------------------------------------------------------------------
+# Headers
+# ---------------------------------------------------------------------------
+# Security headers for every response.
+[[headers]]
+  for = "/*"
+  [headers.values]
+    X-Frame-Options = "DENY"
+    X-Content-Type-Options = "nosniff"
+    Referrer-Policy = "strict-origin-when-cross-origin"
+    Permissions-Policy = "camera=(), microphone=(), geolocation=(), payment=(), usb=(), interest-cohort=()"
+    Strict-Transport-Security = "max-age=31536000; includeSubDomains"
+    Cross-Origin-Opener-Policy = "same-origin"
+    # Allows only what the site actually loads: its own bundle and images,
+    # Google Fonts (stylesheet + font files), and inline style attributes
+    # used by React and the animations. `data:` covers the inline SVG grain
+    # texture. No third-party scripts are loaded.
+    Content-Security-Policy = """
+      default-src 'self';
+      script-src 'self';
+      style-src 'self' 'unsafe-inline' https://fonts.googleapis.com;
+      font-src 'self' https://fonts.gstatic.com;
+      img-src 'self' data:;
+      connect-src 'self';
+      object-src 'none';
+      base-uri 'self';
+      form-action 'self' mailto:;
+      frame-ancestors 'none';
+      upgrade-insecure-requests
+    """
+
+# index.html must always be revalidated so a new deploy is picked up
+# immediately (it references the new hashed bundles).
+[[headers]]
+  for = "/index.html"
+  [headers.values]
+    Cache-Control = "public, max-age=0, must-revalidate"
+
+[[headers]]
+  for = "/"
+  [headers.values]
+    Cache-Control = "public, max-age=0, must-revalidate"
+
+# Vite fingerprints every file in /assets (e.g. index-CA2csGUu.js), so they
+# can be cached for a year — a new build produces new file names.
+[[headers]]
+  for = "/assets/*"
+  [headers.values]
+    Cache-Control = "public, max-age=31536000, immutable"
+
+# Project screenshots: cache for a week, then revalidate.
+[[headers]]
+  for = "/work/*"
+  [headers.values]
+    Cache-Control = "public, max-age=604800, stale-while-revalidate=86400"
+
+# Résumé: short cache so an updated PDF shows up within an hour.
+[[headers]]
+  for = "/Shanida-Shaji-Resume.pdf"
+  [headers.values]
+    Cache-Control = "public, max-age=3600, must-revalidate"
+    Content-Type = "application/pdf"
+    Content-Disposition = "inline; filename=\"Shanida-Shaji-Resume.pdf\""
+
+# Favicon and social-share image.
+[[headers]]
+  for = "/favicon.svg"
+  [headers.values]
+    Cache-Control = "public, max-age=604800"
+
+[[headers]]
+  for = "/og-image.png"
+  [headers.values]
+    Cache-Control = "public, max-age=604800"
