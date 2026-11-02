@@ -46,5 +46,7 @@ src/
 
 ## Deploying
 
-It's a static SPA. `public/_redirects` (Netlify) and `vercel.json` (Vercel) route deep links such as `/work/qspot` to `index.html`.
+It's a static SPA. `netlify.toml` holds the complete Netlify setup — build command, Node version, SPA fallback for deep links such as `/work/qspot`, security headers and caching. `vercel.json` does the routing for Vercel.
+
+Netlify: *Add new site → Import from Git → Shanidashaji/portfolio*. Build settings are read from `netlify.toml`; leave the UI fields empty.
 After choosing a domain, make the `og:image` / `twitter:image` URLs in `index.html` absolute (e.g. `https://your-domain/og-image.png`) so social previews resolve.
