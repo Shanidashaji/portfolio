@@ -53,7 +53,7 @@ export const projects: Project[] = [
     short: 'WordPress to Next.js rebuild',
     kind: 'Organisation Website Rebuild',
     context: 'D4DX Innovations',
-    period: '2026 — ongoing',
+    period: '2026',
     role: 'Full-stack developer',
     tagline: 'Moving a statewide organisation’s WordPress site to Next.js on Cloudflare — without breaking a single old link.',
     product:
@@ -75,7 +75,7 @@ export const projects: Project[] = [
     stack: ['Next.js', 'React', 'TypeScript', 'Tailwind CSS', 'Cloudflare Workers', 'Cloudflare D1', 'Drizzle ORM', 'Better Auth'],
     notes: [
       'Runs on Cloudflare Workers through OpenNext, with a custom Worker entry that handles legacy WordPress URLs and media before the Next.js app.',
-      'The live giokerala.org WordPress site was left untouched while the rebuild was developed and tested locally.',
+      'The old WordPress site stayed live and untouched while the rebuild was developed and tested.',
     ],
     shots: [
       {
@@ -115,7 +115,8 @@ export const projects: Project[] = [
     galleryNote: 'Former Leaders timeline, gallery and the admin sign-in.',
     preview: 'giokerala',
     accent: '#3d8bd9',
-    linkNote: 'Client project in progress — not live yet; source is private.',
+    live: 'https://www.giokerala.org',
+    linkNote: 'Client project — source is private.',
   },
   {
     slug: 'gio-conference',
@@ -150,7 +151,8 @@ export const projects: Project[] = [
     shots: pair('gio', 'GIO Keralam International Conference on Women landing page'),
     preview: 'gio',
     accent: '#e8707e',
-    linkNote: 'Client project — live URL and source are not public.',
+    live: 'https://icw.giokerala.org/',
+    linkNote: 'Client project — source is private.',
   },
   {
     slug: 'qspot',
@@ -182,7 +184,8 @@ export const projects: Project[] = [
     shots: pair('qspot', 'Qspot admin panel sign-in page'),
     preview: 'qspot',
     accent: '#ff9fbd',
-    linkNote: 'Client project — live URL and source are not public.',
+    live: 'https://qspot.in',
+    linkNote: 'Client project — source is private.',
   },
   {
     slug: 'jih-womens-wing',
@@ -246,6 +249,7 @@ export const projects: Project[] = [
     galleryNote: 'Women Entrepreneurs Summit event site — part of the same project.',
     preview: 'jih',
     accent: '#e0418f',
+    live: 'https://jihwomenkerala.org/',
     linkNote: 'Client project — source is private.',
   },
   {
@@ -277,10 +281,11 @@ export const projects: Project[] = [
     notes: [
       'Organised as a monorepo: a Next.js frontend, an Express REST API and shared validation schemas.',
     ],
-    shots: pair('malarvadi', 'Malarvadi website home page, “Small Steps, Big Change!”'),
+    shots: pair('malarvadi-v2', 'Malarvadi Balasangham website home page with an illustrated hero of kites, children and a tree house'),
     preview: 'malarvadi',
     accent: '#ffc29a',
-    linkNote: 'Client project — live URL and source are not public.',
+    live: 'https://malarvadi.org',
+    linkNote: 'Client project — source is private.',
   },
   {
     slug: 'qsc',
@@ -310,7 +315,8 @@ export const projects: Project[] = [
     shots: pair('qsc-en', 'QSC Kerala admin workspace sign-in page'),
     preview: 'qsc',
     accent: '#8fb8ff',
-    linkNote: 'Client project — live URL and source are not public.',
+    live: 'https://quranstudycentre.com/',
+    linkNote: 'Client project — source is private.',
   },
   {
     slug: 'election-portal',

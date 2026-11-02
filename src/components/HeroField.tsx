@@ -3,7 +3,7 @@ import { finePointer, reducedMotion } from '../lib/motion';
 
 /**
  * Dot lattice behind the hero. Dots near the pointer lift toward it and
- * light up in the banner gradient. The loop only runs while the pointer is moving and
+ * light up in the site's earthy palette. The loop only runs while the pointer is moving and
  * the hero is on screen; at rest it is a single static draw.
  */
 export function HeroField() {
@@ -35,12 +35,12 @@ export function HeroField() {
       draw();
     };
 
-    // banner palette across the width: peach → rose → mauve → periwinkle
+    // romantic palette across the width: blush → burgundy → rose → plum
     const stops = [
-      [255, 186, 180],
-      [245, 145, 168],
-      [198, 156, 185],
-      [143, 166, 216],
+      [217, 179, 168],
+      [107, 30, 44],
+      [185, 127, 128],
+      [74, 26, 42],
     ];
     const tint = (t: number) => {
       const f = Math.min(Math.max(t, 0), 0.999) * (stops.length - 1);
@@ -69,7 +69,7 @@ export function HeroField() {
             ctx.arc(px, py, 1 + e * 1.8, 0, Math.PI * 2);
             ctx.fill();
           } else {
-            ctx.fillStyle = 'rgba(242,237,240,0.13)';
+            ctx.fillStyle = 'rgba(58, 18, 25,0.14)';
             ctx.fillRect(px - 0.6, py - 0.6, 1.2, 1.2);
           }
         }

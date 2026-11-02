@@ -32,10 +32,6 @@ export function Work() {
         <div className="work__list">
           {projects.map((p, i) => (
             <article id={`p-${p.slug}`} key={p.slug} className={`feat ${i % 2 ? 'feat--flip' : ''}`} aria-labelledby={`t-${p.slug}`}>
-              <div className="feat__num display" aria-hidden="true" data-parallax="14">
-                {p.index}
-              </div>
-
               <TLink to={`/work/${p.slug}`} className="feat__media" data-cursor="Open" aria-label={`Open the ${p.name} case study`} tabIndex={-1}>
                 <Tilt>
                   <div data-reveal="clip">
@@ -45,6 +41,9 @@ export function Work() {
               </TLink>
 
               <div className="feat__text">
+                <div className="feat__num display" aria-hidden="true">
+                  {p.index}
+                </div>
                 <p className="feat__meta mono" data-reveal="up">
                   <span>{p.kind}</span>
                   <span className="muted">{p.context}</span>
@@ -67,7 +66,18 @@ export function Work() {
                 <p className="feat__role mono" data-reveal="up">
                   <span className="muted">Role —</span> {p.role}
                 </p>
-                <div data-reveal="up">
+                <div className="feat__ctas" data-reveal="up">
+                  {p.live ? (
+                    <a
+                      className="btn btn--accent"
+                      href={p.live}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      aria-label={`Live preview of ${p.name} (opens in a new tab)`}
+                    >
+                      Live preview <Arrow />
+                    </a>
+                  ) : null}
                   <TLink to={`/work/${p.slug}`} className="btn">
                     Case study <Arrow dir="right" />
                   </TLink>
