@@ -8,7 +8,7 @@
   border-bottom: 1px solid transparent;
 }
 .nav.is-scrolled {
-  background: rgba(13, 11, 16, 0.72);
+  background: rgba(244, 235, 228, 0.82);
   backdrop-filter: blur(12px) saturate(140%);
   -webkit-backdrop-filter: blur(12px) saturate(140%);
   border-bottom-color: var(--line);
@@ -65,7 +65,7 @@
   padding: 4px;
   border: 1px solid var(--line-2);
   border-radius: 999px;
-  background: rgba(17, 17, 19, 0.7);
+  background: rgba(249, 241, 236, 0.78);
   backdrop-filter: blur(10px);
 }
 .nav__ind {
@@ -124,7 +124,7 @@
   height: 44px;
   border-radius: 50%;
   border: 1px solid var(--line-2);
-  background: rgba(17, 17, 19, 0.7);
+  background: rgba(249, 241, 236, 0.78);
 }
 .nav__toggle span {
   position: absolute;
@@ -290,7 +290,7 @@
   height: 34px;
   margin: -17px 0 0 -17px;
   border-radius: 50%;
-  border: 1px solid rgba(255, 143, 177, 0.7);
+  border: 1px solid rgba(107, 30, 44, 0.7);
   pointer-events: none;
   opacity: 0;
   display: grid;
@@ -391,8 +391,112 @@
   flex-direction: column;
   gap: 48px;
   align-self: start;
-  position: sticky;
-  top: calc(var(--nav-h) + 32px);
+}
+
+/* illustrated portrait: slow drift, a warm glint and a turning gradient rim */
+@property --rim-a {
+  syntax: '<angle>';
+  inherits: false;
+  initial-value: 0deg;
+}
+.portrait {
+  position: relative;
+  width: min(360px, 78%);
+  margin: 0;
+}
+.portrait__frame {
+  position: relative;
+  aspect-ratio: 4 / 5;
+  border-radius: 200px 200px 18px 18px;
+  overflow: hidden;
+  border: 2px solid transparent;
+  background:
+    linear-gradient(var(--bg-2), var(--bg-2)) padding-box,
+    conic-gradient(from var(--rim-a), var(--blush), var(--burgundy), var(--mauve), var(--rose), var(--blush)) border-box;
+  box-shadow: 0 40px 70px -40px rgba(58, 18, 25, 0.45);
+  animation: rim-turn 9s linear infinite;
+}
+.portrait__media {
+  position: absolute;
+  inset: 0;
+}
+.portrait__media img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: 50% 30%;
+  transform-origin: 55% 35%;
+  animation: portrait-drift 18s ease-in-out infinite alternate;
+}
+.portrait__glint {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background: linear-gradient(115deg, transparent 35%, rgba(255, 214, 160, 0.32) 50%, transparent 65%);
+  background-size: 250% 100%;
+  background-position: 150% 0;
+  mix-blend-mode: soft-light;
+  animation: portrait-glint 7s ease-in-out infinite;
+}
+.portrait__frame .ticks {
+  inset: 10px;
+}
+@keyframes rim-turn {
+  to {
+    --rim-a: 360deg;
+  }
+}
+@keyframes portrait-drift {
+  from {
+    transform: scale(1.02) translate(0, 0);
+  }
+  to {
+    transform: scale(1.1) translate(-1.5%, 1%);
+  }
+}
+@keyframes portrait-glint {
+  0%,
+  55% {
+    background-position: 150% 0;
+  }
+  100% {
+    background-position: -50% 0;
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  .portrait__frame,
+  .portrait__media img,
+  .portrait__glint {
+    animation: none;
+  }
+}
+.portrait__hello {
+  position: absolute;
+  right: -18%;
+  bottom: 14%;
+  padding: 10px 16px;
+  border-radius: 999px;
+  background: var(--grad);
+  color: var(--accent-ink);
+  box-shadow: 0 14px 30px -14px rgba(58, 18, 25, 0.6);
+  transform: rotate(-6deg);
+  white-space: nowrap;
+  animation: hello-float 5s ease-in-out infinite alternate;
+}
+@media (prefers-reduced-motion: reduce) {
+  .portrait__hello {
+    animation: none;
+  }
+}
+@keyframes hello-float {
+  to {
+    transform: rotate(-3deg) translateY(-8px);
+  }
+}
+.portrait__cap {
+  display: block;
+  margin-top: 14px;
+  font-size: 10.5px;
 }
 .about__statement {
   font-size: clamp(34px, 4.4vw, 72px);
@@ -475,11 +579,38 @@
   .about__grid {
     grid-template-columns: 1fr;
   }
-  .about__lead {
-    position: static;
+  .portrait {
+    width: min(300px, 72%);
+  }
+  .portrait__hello {
+    right: -22%;
   }
   .about__facts > div {
     grid-template-columns: 100px 1fr;
+  }
+}
+/* tablet: portrait sits beside the statement instead of floating alone */
+@media (min-width: 601px) and (max-width: 900px) {
+  .about__lead {
+    display: grid;
+    grid-template-columns: minmax(0, 0.8fr) minmax(0, 1fr);
+    gap: 32px 40px;
+    align-items: end;
+  }
+  .portrait {
+    width: 100%;
+    grid-row: 1 / span 2;
+    align-self: start;
+  }
+  .portrait__hello {
+    right: -8%;
+  }
+  .about__statement,
+  .about__facts {
+    grid-column: 2;
+  }
+  .about__facts {
+    align-self: start;
   }
 }
 
@@ -563,7 +694,7 @@
   stroke-dasharray: 2 6;
 }
 .sk-edge {
-  stroke: rgba(255, 143, 177, 0.35);
+  stroke: rgba(107, 30, 44, 0.35);
   stroke-width: 1;
 }
 .sk-core circle {
@@ -610,6 +741,8 @@
 }
 .skills__name {
   font-weight: 500;
+  white-space: nowrap;
+  flex-shrink: 0;
 }
 .skills__used {
   color: var(--muted);
@@ -906,6 +1039,10 @@
     padding-left: 20px;
     border-left: 1px solid var(--line);
   }
+  /* odd count: last channel spans the row instead of leaving a half-empty cell */
+  .channels li:last-child:nth-child(odd) {
+    grid-column: 1 / -1;
+  }
 }
 @media (max-width: 480px) {
   .channels {
@@ -933,4 +1070,24 @@
   min-height: 32px;
   display: inline-flex;
   align-items: center;
+}
+/* 2x2 grid so "Back to top" never wraps onto a row of its own */
+@media (max-width: 1000px) {
+  .footer {
+    display: grid;
+    grid-template-columns: 1fr auto;
+  }
+  .footer > :nth-child(even) {
+    justify-self: end;
+    text-align: right;
+  }
+}
+@media (max-width: 560px) {
+  .footer {
+    grid-template-columns: 1fr;
+  }
+  .footer > :nth-child(even) {
+    justify-self: start;
+    text-align: left;
+  }
 }

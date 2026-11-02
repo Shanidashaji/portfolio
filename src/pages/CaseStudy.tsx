@@ -52,6 +52,19 @@ export default function CaseStudy() {
         <p className="case__tagline" data-reveal="up" data-delay="0.15">
           {project.tagline}
         </p>
+        {project.live ? (
+          <div data-reveal="up" data-delay="0.2">
+            <a
+              className="btn btn--accent"
+              href={project.live}
+              target="_blank"
+              rel="noopener noreferrer"
+              aria-label={`Live preview of ${project.name} (opens in a new tab)`}
+            >
+              Live preview <Arrow />
+            </a>
+          </div>
+        ) : null}
 
         <dl className="case__meta" data-reveal="stagger">
           {meta.map(([k, v]) => (

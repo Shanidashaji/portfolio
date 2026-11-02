@@ -1,25 +1,26 @@
 /* ---------- tokens ---------- */
 :root {
-  --bg: #0d0b10;
-  --bg-2: #141118;
-  --bg-3: #1b1720;
-  --fg: #f2edf0;
-  --fg-2: #cdc5cc;
-  --muted: #958c96;
-  --dim: #5f5763;
-  --line: rgba(242, 237, 240, 0.1);
-  --line-2: rgba(242, 237, 240, 0.18);
+  /* romantic editorial palette: blush paper, wine ink, burgundy, dusty rose, mauve, plum */
+  --bg: #f4ebe4;
+  --bg-2: #ede0d8;
+  --bg-3: #e3d1c7;
+  --fg: #3a1219;
+  --fg-2: #561d27;
+  --muted: #7d5a5e;
+  --dim: #a88f8f;
+  --line: rgba(58, 18, 25, 0.12);
+  --line-2: rgba(58, 18, 25, 0.22);
 
-  /* palette sampled from the LinkedIn banner: peach → rose → mauve → periwinkle */
-  --peach: #ffbab4;
-  --rose: #f591a8;
-  --mauve: #c69cb9;
-  --lilac: #aa96bc;
-  --peri: #8fa6d8;
-  --accent: #ff8fb1;
-  --accent-ink: #1a0c14;
-  --grad: linear-gradient(100deg, var(--peach) 0%, var(--rose) 32%, var(--mauve) 64%, var(--peri) 100%);
-  --grad-v: linear-gradient(180deg, var(--peach), var(--rose) 35%, var(--mauve) 65%, var(--peri));
+  --blush: #d9b3a8;
+  --burgundy: #6b1e2c;
+  --wine: #4e1420;
+  --rose: #b97f80;
+  --plum: #4a1a2a;
+  --mauve: #8c4a55;
+  --accent: #6b1e2c;
+  --accent-ink: #f9f1ec;
+  --grad: linear-gradient(100deg, var(--burgundy) 0%, var(--wine) 38%, var(--mauve) 72%, var(--plum) 100%);
+  --grad-v: linear-gradient(180deg, var(--blush), var(--burgundy) 40%, var(--mauve) 75%, var(--plum));
 
   --f-display: 'Bricolage Grotesque', 'Arial Narrow', system-ui, sans-serif;
   --f-body: 'Geist', ui-sans-serif, system-ui, -apple-system, 'Segoe UI', sans-serif;
@@ -32,7 +33,7 @@
   --ease: cubic-bezier(0.19, 1, 0.22, 1);
   --ease-io: cubic-bezier(0.76, 0, 0.24, 1);
 
-  color-scheme: dark;
+  color-scheme: light;
 }
 
 /* ---------- reset ---------- */
@@ -97,7 +98,7 @@ ol {
   list-style: none;
 }
 ::selection {
-  background: var(--rose);
+  background: var(--burgundy);
   color: var(--accent-ink);
 }
 :focus-visible {
@@ -113,7 +114,8 @@ body::before {
   inset: 0;
   z-index: 100;
   pointer-events: none;
-  opacity: 0.045;
+  opacity: 0.06;
+  mix-blend-mode: multiply;
   background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
 }
 
@@ -289,6 +291,10 @@ body::before {
 .section {
   position: relative;
   padding-block: clamp(88px, 11vw, 168px);
+}
+/* back-to-back sections would otherwise stack two full paddings */
+.section + .section:not(.contact) {
+  padding-top: clamp(24px, 4vw, 64px);
 }
 .sec-head {
   display: grid;

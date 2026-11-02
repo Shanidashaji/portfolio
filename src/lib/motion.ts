@@ -60,7 +60,9 @@ export function useReveals(scope: RefObject<HTMLElement | null>, deps: unknown[]
         const tl = gsap.timeline({ scrollTrigger: { trigger: el, start: 'top 88%', once: true } });
         tl.fromTo(el, { clipPath: 'inset(18% 12% 18% 12% round 24px)' }, { clipPath: 'inset(0% 0% 0% 0% round 0px)', duration: 1.4, ease: 'expo.inOut', clearProps: 'clipPath' });
         const inner = el.querySelector('[data-reveal-inner]');
-        if (inner) tl.from(inner, { scale: 1.18, duration: 1.8 }, 0);
+        // explicit end value: never infer it from computed style, which a CSS
+        // transform transition (or React's dev double-mount) can leave mid-way
+        if (inner) tl.fromTo(inner, { scale: 1.18 }, { scale: 1, duration: 1.8, clearProps: 'transform' }, 0);
       });
       gsap.utils.toArray<HTMLElement>('[data-reveal="line"]').forEach((el) => {
         gsap.from(el, { scaleX: 0, transformOrigin: 'left center', duration: 1.6, ease: 'expo.inOut', scrollTrigger: st(el) });

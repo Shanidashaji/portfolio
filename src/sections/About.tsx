@@ -1,5 +1,6 @@
 import { principles, profile, publication } from '../data/profile';
-import { SecHead, Split } from '../components/Bits';
+import { SecHead, Split, Ticks } from '../components/Bits';
+import { Tilt } from '../components/ProjectMedia';
 
 const facts = [
   ['Based in', profile.location],
@@ -17,6 +18,31 @@ export function About() {
 
         <div className="about__grid">
           <div className="about__lead">
+            <figure className="portrait">
+              <Tilt max={4}>
+                <div className="portrait__frame" data-reveal="clip">
+                  {/* reveal zoom runs on the wrapper so it never fights the CSS drift on the img */}
+                  <div className="portrait__media" data-reveal-inner>
+                    <img
+                      src="/shanida-portrait-720.webp"
+                      srcSet="/shanida-portrait-480.webp 480w, /shanida-portrait-720.webp 720w"
+                      sizes="(max-width: 900px) 70vw, 360px"
+                      width={720}
+                      height={900}
+                      alt={`Illustrated portrait of ${profile.name}`}
+                      loading="lazy"
+                      decoding="async"
+                    />
+                  </div>
+                  <span className="portrait__glint" aria-hidden="true" />
+                  <Ticks />
+                </div>
+              </Tilt>
+              <span className="portrait__hello mono" aria-hidden="true">
+                Hi, I’m {profile.firstName} ✳
+              </span>
+              <figcaption className="portrait__cap mono muted">Illustrated from a photo</figcaption>
+            </figure>
             <Split
               as="p"
               className="about__statement display"

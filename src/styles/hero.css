@@ -14,11 +14,11 @@
   z-index: -2;
   pointer-events: none;
   background:
-    radial-gradient(34% 42% at 74% 22%, rgba(245, 145, 168, 0.55), transparent 70%),
-    radial-gradient(30% 40% at 58% 8%, rgba(255, 186, 180, 0.38), transparent 70%),
-    radial-gradient(32% 46% at 90% 58%, rgba(143, 166, 216, 0.48), transparent 70%),
-    radial-gradient(28% 36% at 66% 66%, rgba(198, 156, 185, 0.34), transparent 70%),
-    radial-gradient(40% 40% at 12% 90%, rgba(170, 150, 188, 0.16), transparent 70%);
+    radial-gradient(34% 42% at 76% 20%, rgba(185, 127, 128, 0.42), transparent 70%),
+    radial-gradient(30% 40% at 58% 6%, rgba(217, 179, 168, 0.4), transparent 70%),
+    radial-gradient(32% 46% at 92% 60%, rgba(140, 74, 85, 0.3), transparent 70%),
+    radial-gradient(28% 36% at 66% 68%, rgba(107, 30, 44, 0.18), transparent 70%),
+    radial-gradient(40% 40% at 10% 92%, rgba(217, 179, 168, 0.22), transparent 70%);
   filter: blur(30px);
   animation: aurora 26s ease-in-out infinite alternate;
 }
@@ -87,11 +87,11 @@
   background: linear-gradient(
     90deg,
     var(--fg) 0%,
-    var(--peach) 18%,
-    var(--rose) 34%,
-    var(--mauve) 50%,
-    var(--peri) 66%,
-    var(--lilac) 82%,
+    var(--burgundy) 20%,
+    var(--wine) 36%,
+    var(--rose) 50%,
+    var(--mauve) 66%,
+    var(--plum) 82%,
     var(--fg) 100%
   );
   background-size: 700% 100%;
@@ -241,7 +241,7 @@
   padding: 0 14px 0 12px;
   border: 1px solid var(--line-2);
   border-radius: 999px;
-  background: rgba(13, 11, 16, 0.6);
+  background: rgba(249, 241, 236, 0.7);
   backdrop-filter: blur(6px);
   font-family: var(--f-mono);
   font-size: 11px;
@@ -253,16 +253,16 @@
   height: 7px;
   border-radius: 50%;
   background: var(--grad);
-  box-shadow: 0 0 0 0 rgba(255, 143, 177, 0.5);
+  box-shadow: 0 0 0 0 rgba(107, 30, 44, 0.5);
   animation: pulse 2.4s ease-out infinite;
 }
 @keyframes pulse {
   0% {
-    box-shadow: 0 0 0 0 rgba(255, 143, 177, 0.45);
+    box-shadow: 0 0 0 0 rgba(107, 30, 44, 0.45);
   }
   70%,
   100% {
-    box-shadow: 0 0 0 8px rgba(255, 143, 177, 0);
+    box-shadow: 0 0 0 8px rgba(107, 30, 44, 0);
   }
 }
 .status__track {
