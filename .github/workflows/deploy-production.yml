@@ -1,0 +1,35 @@
+# Netlify publishes the live site from the `production` branch.
+# Every push to `main` is merged into `production` here, so pushing to
+# `main` is all it takes to update https://shanida.netlify.app/.
+# If the Netlify build fails, the previous deploy stays live.
+
+name: Deploy to production
+
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+concurrency:
+  group: deploy-production
+  cancel-in-progress: false
+
+jobs:
+  merge-into-production:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out production
+        uses: actions/checkout@v4
+        with:
+          ref: production
+          fetch-depth: 0
+
+      - name: Merge main into production
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git merge --no-ff origin/main -m "Merge main into production (${GITHUB_SHA::7})"
+          git push origin production
