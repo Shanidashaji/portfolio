@@ -1,5 +1,5 @@
 // Single source of truth for personal content. Everything here comes from
-// the résumé (SHANIDA Software Developer.pdf) — edit here, not in components.
+// the résumé (SHANIDA Software Developer (1).pdf) — edit here, not in components.
 
 export const profile = {
   name: 'Shanida Shaji',
@@ -9,7 +9,7 @@ export const profile = {
   title: 'Full-Stack Developer',
   location: 'Kerala, India',
   timezone: 'Asia/Kolkata',
-  email: 'shanida.26shaji@gmail.com',
+  email: 'shanida26.shaji@gmail.com',
   phone: '+91 97443 52147',
   phoneHref: 'tel:+919744352147',
   resume: '/Shanida-Shaji-Resume.pdf',
@@ -33,7 +33,7 @@ export type TimelineEntry = {
 export const timeline: TimelineEntry[] = [
   {
     kind: 'work',
-    period: 'Apr 2026 — Present',
+    period: 'Jul 2026 — Present',
     title: 'Full Stack Developer',
     org: 'D4DX Innovations',
     points: [
@@ -45,7 +45,7 @@ export const timeline: TimelineEntry[] = [
   },
   {
     kind: 'work',
-    period: 'Mar 2026 — May 2026',
+    period: 'Mar 2026 — Jun 2026',
     title: 'Full Stack Developer Intern',
     org: 'Riss Technologies',
     points: [
@@ -77,9 +77,9 @@ export const timeline: TimelineEntry[] = [
 ];
 
 export const certifications = [
-  { title: 'MERN Stack Workshop Participation', org: 'Zoople Technologies Pvt Ltd' },
-  { title: 'Full Stack with Python and Django', org: '' },
-  { title: 'Completion of Python 3 Training', org: '' },
+  { title: 'MERN Stack Workshop Participation', org: 'Zoople Technologies Pvt Ltd', date: 'Nov 2026' },
+  { title: 'Full Stack with Python and Django', org: '', date: 'Oct 2026' },
+  { title: 'Completion of Python 3 Training', org: '', date: '' },
 ];
 
 export const publication = {

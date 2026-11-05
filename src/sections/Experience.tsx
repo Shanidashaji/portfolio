@@ -85,6 +85,7 @@ export function Experience() {
                   <li key={c.title}>
                     {c.title}
                     {c.org ? <span className="muted"> — {c.org}</span> : null}
+                    {c.date ? <span className="mono muted"> · {c.date}</span> : null}
                   </li>
                 ))}
               </ul>
