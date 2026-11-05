@@ -46,7 +46,7 @@ export function About() {
             <Split
               as="p"
               className="about__statement display"
-              text="Fresh out of an MCA and already shipping on seven products."
+              text="Fresh out of an MCA and already shipping on five live products."
               data-reveal="chars"
             />
             <dl className="about__facts" data-reveal="stagger">

@@ -19,7 +19,7 @@ export const profile = {
   ],
   languages: ['English', 'Hindi', 'Malayalam'],
   intro:
-    'Full-stack developer at D4DX Innovations, building responsive interfaces, admin dashboards and API fixes across seven web products — with React, Next.js, Node.js, Express, MongoDB, Python and Django.',
+    'Full-stack developer at D4DX Innovations, building responsive interfaces, admin dashboards and API fixes across five live web products — with React, Next.js, Node.js, Express, MongoDB, Python and Django.',
 } as const;
 
 export type TimelineEntry = {
@@ -37,7 +37,7 @@ export const timeline: TimelineEntry[] = [
     title: 'Full Stack Developer',
     org: 'D4DX Innovations',
     points: [
-      'Full-stack work on seven projects: GIO Kerala, GIO Conference, JIH Women’s Wing, QSC, Qspot, Malarvadi and Election Portal.',
+      'Full-stack work on five live projects: JIH Women’s Wing, QSC, Qspot, Malarvadi and Election Portal.',
       'Frontend — responsive, mobile-first interfaces, administrative dashboards, login pages and page layouts for mobile and desktop.',
       'Backend / API — debugging APIs and working on examination, results and report-generation functionality in existing applications.',
       'Testing applications, troubleshooting issues and maintaining existing components as part of the development team.',
